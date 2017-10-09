@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://stamp.gd" type="Script" id=1]
+[ext_resource path="res://stamp_shadow.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32.4407, 33.6463 )
+
+[node name="stamp" type="RigidBody2D" groups=[
+"pickable",
+"stamps",
+]]
+
+position = Vector2( 317, 214 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 33
+mode = 0
+mass = 1.0
+friction = 0.2
+bounce = 1.0
+gravity_scale = 2.0
+custom_integrator = false
+continuous_cd = 1
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable" ]
+icon_texture = null
+
+[node name="shadow" type="Sprite" parent="."]
+
+modulate = Color( 1, 1, 1, 0.266667 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+
+[node name="area" type="Area2D" parent="."]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 32
+collision_mask = 32
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Audio Bus", "Collision" ]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="area"]
+
+shape = SubResource( 2 )
+
+[connection signal="picked" from="." to="." method="_on_stamp_picked"]
+
+[connection signal="released" from="." to="." method="_on_stamp_released"]
+
+

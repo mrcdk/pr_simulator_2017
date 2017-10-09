@@ -1,0 +1,246 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://paper.gd" type="Script" id=1]
+[ext_resource path="res://page_2_shadow.png" type="Texture" id=2]
+[ext_resource path="res://page_2.png" type="Texture" id=3]
+[ext_resource path="res://Consolas.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://page_2_mask.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 100.518
+height = 118.9
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100, 160 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[sub_resource type="DynamicFont" id=6]
+
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="paper" type="RigidBody2D" groups=[
+"pickable",
+"papers",
+]]
+
+position = Vector2( 0, 0.880264 )
+z_as_relative = false
+input_pickable = false
+collision_layer = 0
+collision_mask = 2
+mode = 0
+mass = 3.0
+friction = 0.5
+bounce = 1.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Z" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="shadow" type="Sprite" parent="."]
+
+visible = false
+modulate = Color( 1, 1, 1, 0.235294 )
+position = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="rich_text_label" type="RichTextLabel" parent="."]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -84.0
+margin_top = -150.0
+margin_right = 82.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+_sections_unfolded = [ "BBCode", "custom_fonts" ]
+
+[node name="stamps" type="Position2D" parent="."]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="mask" type="Light2D" parent="."]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 3
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 2
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range" ]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+visible = false
+shape = SubResource( 2 )
+
+[node name="area" type="Area2D" parent="."]
+
+editor/display_folded = true
+visible = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 32
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="area"]
+
+shape = SubResource( 3 )
+
+[node name="yes_area" type="Area2D" parent="."]
+
+editor/display_folded = true
+position = Vector2( -50.1046, 98.758 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 1.0
+collision_layer = 32
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="yes_area"]
+
+shape = SubResource( 4 )
+
+[node name="no_area" type="Area2D" parent="."]
+
+editor/display_folded = true
+position = Vector2( 49.9214, 98.7161 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 32
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="no_area"]
+
+shape = SubResource( 5 )
+
+[node name="visibility" type="VisibilityNotifier2D" parent="."]
+
+visible = false
+rect = Rect2( -100, -160, 200, 320 )
+
+[node name="label" type="Label" parent="."]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -79.0
+margin_top = 135.0
+margin_right = 81.0
+margin_bottom = 160.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "MERGE?"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="timer" type="Timer" parent="."]
+
+process_mode = 0
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="picked" from="." to="." method="_on_paper_picked"]
+
+[connection signal="released" from="." to="." method="_on_paper_released"]
+
+[connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+
+
